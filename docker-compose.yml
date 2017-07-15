@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  db:
+    image: mongo
+  
+  web:
+    image: souvikmaji94/healthcarereminder_web
+    build: form
+    command: python -u app.py
+    links:
+      - db
+    volumes:
+      - ./config:/form/config
+      - ./libs:/form/libs
+    environment:
+      MONGODB_HOST: db
+    
+  notification:
+    image: souvikmaji94/healthcarereminder_notification
+    build: notify
+    command: python -u app.py
+    links:
+      - db
+    volumes:
+      - ./config:/notify/config
+      - ./libs:/notify/libs
+    environment:
+      MONGODB_HOST: db
+        

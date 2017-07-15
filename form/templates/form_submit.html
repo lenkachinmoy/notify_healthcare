@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Info</title>
+	<script type="text/Javascript">
+		function validation()
+			{
+				var RE_NAME = /^[A-Za-z]+(\s)+[A-Za-z]+$/;
+				var PH_NO = /^\d{10,11}$/;
+				
+				var x;
+				x=document.getElementById("name").value;
+				if(x=="")
+				{
+					alert("The name cannot be left blank");
+					return false;
+				}
+			   if(!RE_NAME.test(x))
+			   {
+					alert("NAME  has to be in proper format with First Name as well as Last Name ");
+					return false;
+			   }
+			   var y;
+			   y=document.getElementById("ph_no").value;
+			   if(y=="")
+			   {
+					alert("The Phone number field cannot be left blank");
+					return false;
+			   }
+			   if(!PH_NO.test(y))
+				{
+					alert("The phone number must contain 10 digits ");
+					return false;
+			    }
+				var z;
+				z=document.getElementById("med_name").value;
+				if(z=="")
+				{
+					alert("The medicine field cannot remain empty");
+					return false;
+				}
+				var q;
+				q=document.getElementById("med_qty").value;
+				if(q=="")
+				{
+					alert("The quantity field has to be valid number");
+					return false;
+				}
+			}
+	</script>
+</head>
+<body>
+<form method="post" action="{{ url_for('save') }}" onSubmit="return validation()">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name"/><br/>
+
+    <label for="ph_no">Phone number:</label>
+    <input type="text" name="ph_no" id="ph_no"/><br/>
+
+    <label for="med_name">Name of medicine:</label>
+    <input type="text" name="med_name" id="med_name"/><br/>
+
+    <label for="med_qty">Qty:</label>
+    <input type="text" name="med_qty" id="med_qty"/><br/>
+
+    <label for="med_start_date">Start date</label>
+    <input type="date" name="med_start_date" id="med_start_date"/><br/>
+
+    <label for="med_end_date">End date</label>
+    <input type="date" name="med_end_date" id="med_end_date"/><br/>
+
+    <label for="time">Time:</label>
+    <input type="time" name="time" id="time"/><br/>
+
+    <input type="submit"/>
+</form>
+</body>
+</html>

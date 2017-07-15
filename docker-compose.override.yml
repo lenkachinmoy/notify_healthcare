@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  
+  web:
+    ports:
+    - "5000:5000"
+    volumes:
+      - ./form:/form
+
+  notification:
+    build: notify
+    command: python -u app.py
+    volumes:
+      - ./notify:/notify
